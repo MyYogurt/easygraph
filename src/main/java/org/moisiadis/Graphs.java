@@ -1,5 +1,8 @@
 package org.moisiadis;
 
+/**
+ * Utility class for graphs.
+ */
 public class Graphs {
 	private Graphs() {
 	}
@@ -10,7 +13,7 @@ public class Graphs {
 	 * @return an immutable view of the graph.
 	 * @param <T> the type of the data of the vertices.
 	 */
-	public static <T> AbstractGraph<T> immutableView(AbstractGraph<T> graph) {
+	public static <T> Graph<T> immutableView(AbstractGraph<T> graph) {
 		return new ImmutableGraph<>(graph);
 	}
 }

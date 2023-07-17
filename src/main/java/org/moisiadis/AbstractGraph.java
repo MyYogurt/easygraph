@@ -12,10 +12,8 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * A graph is a data structure that consists of the following two components:
- * 1. A finite set of vertices also called as nodes.
- * 2. A finite set of a pair of the form (u, v) called as edge.
- * @param <T>
+ * An abstract graph with common methods implemented.
+ * @param <T> the type of the data of the vertices.
  */
 public abstract class AbstractGraph<T> implements Graph<T>, Serializable {
 	/**

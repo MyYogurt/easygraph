@@ -1,6 +1,6 @@
 package org.moisiadis;
 
-import java.io.Serializable;
+import java.util.Collection;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -15,11 +15,11 @@ import java.util.Set;
  * An abstract graph with common methods implemented.
  * @param <T> the type of the data of the vertices.
  */
-public abstract class AbstractGraph<T> implements Graph<T>, Serializable {
+public abstract class AbstractGraph<T> implements Graph<T> {
 	/**
 	 * A map of vertices and their adjacent vertices.
 	 */
-	protected final Map<T, List<T>> adjVertices = new HashMap<>();
+	protected final Map<T, List<Edge<T>>> adjVertices = new HashMap<>();
 
 	@Override
 	public void addVertex(T data) {
@@ -27,14 +27,27 @@ public abstract class AbstractGraph<T> implements Graph<T>, Serializable {
 	}
 
 	@Override
+	public void addVertices(Collection<? extends T> vertices) {
+		vertices.forEach(this::addVertex);
+	}
+
+	@Override
 	public void removeVertex(T data) {
 		adjVertices.remove(data);
-		adjVertices.values().forEach(e -> e.remove(data));
+		adjVertices.values().forEach(e -> e.remove(new Edge<>(data)));
 	}
 
 	@Override
 	public Optional<List<T>> getAdjVertices(T data) {
-		return Optional.ofNullable(adjVertices.get(data));
+		List<Edge<T>> vertices = adjVertices.get(data);
+
+		if (vertices == null) {
+			return Optional.empty();
+		}
+
+		List<T> returnVertices = new LinkedList<>();
+		vertices.forEach(e -> returnVertices.add(e.getDestination()));
+		return Optional.of(returnVertices);
 	}
 
 	@Override
@@ -60,7 +73,7 @@ public abstract class AbstractGraph<T> implements Graph<T>, Serializable {
 	@Override
 	public boolean hasEdge(T data1, T data2) {
 		if (adjVertices.containsKey(data1) && adjVertices.containsKey(data2)) {
-			return adjVertices.get(data1).contains(data2);
+			return adjVertices.get(data1).contains(new Edge<>(data2));
 		}
 		return false;
 	}
@@ -104,6 +117,11 @@ public abstract class AbstractGraph<T> implements Graph<T>, Serializable {
 		return "Graph{" + adjVertices +'}';
 	}
 
+	/**
+	 * Two graphs are equal if they have the same vertices and edges.
+	 * @param o the other graph.
+	 * @return true if the graphs are equal, false otherwise.
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

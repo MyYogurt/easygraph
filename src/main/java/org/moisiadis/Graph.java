@@ -1,5 +1,7 @@
 package org.moisiadis;
 
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -10,12 +12,18 @@ import java.util.Set;
  * 2. A finite set of a pair of the form (u, v) called as edge.
  * @param <T> the type of the data of the vertices.
  */
-public interface Graph<T> {
+public interface Graph<T> extends Serializable {
 	/**
 	 * Adds a vertex to the graph.
 	 * @param data the data of the vertex to be added.
 	 */
 	void addVertex(T data);
+
+	/**
+	 * Adds a collection of vertices to the graph.
+	 * @param vertices the collection of vertices to be added.
+	 */
+	void addVertices(Collection<? extends T> vertices);
 
 	/**
 	 * Adds an edge between two vertices.
@@ -103,5 +111,5 @@ public interface Graph<T> {
 	 * @param data2 the data of the vertex to end the traversal at.
 	 * @return the vertices of the graph in topological order.
 	 */
-	Set<T> shortestPath(T data1, T data2);
+	PathResult<T> shortestPath(T data1, T data2);
 }

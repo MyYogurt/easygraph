@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"org.moisiadis","l":"AbstractGraph"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.moisiadis","l":"Graph"},{"p":"org.moisiadis","l":"Graphs"},{"p":"org.moisiadis","l":"PathResult"}];updateSearchResults();

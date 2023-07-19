@@ -1,9 +1,10 @@
-package org.moisiadis;
+package easygraph;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Objects;
 
-class Edge<T> implements Serializable {
+class Edge<T> implements Serializable, Comparable<Edge<T>> {
 	private static final int DEFAULT_WEIGHT = 1;
 
 	private final T destination;
@@ -43,5 +44,10 @@ class Edge<T> implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(destination, weight);
+	}
+
+	@Override
+	public int compareTo(Edge<T> o) {
+		return Double.compare(weight, o.weight);
 	}
 }

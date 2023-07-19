@@ -1,4 +1,4 @@
-package org.moisiadis;
+package easygraph;
 
 import java.util.List;
 
@@ -14,5 +14,16 @@ class GraphTestHelper {
 		graph.addEdge("1", "4");
 		graph.addEdge("3", "2");
 		return graph;
+	}
+
+	static void addTestDataToGraph(Graph<String> graph) {
+		String[] vertices = {"0", "1", "2", "3", "4"};
+		graph.addVertices(List.of(vertices));
+		graph.addEdge("0", "1");
+		graph.addEdge("0", "4");
+		graph.addEdge("1", "2");
+		graph.addEdge("1", "3");
+		graph.addEdge("1", "4");
+		graph.addEdge("3", "2");
 	}
 }

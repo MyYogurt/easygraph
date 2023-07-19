@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"easygraph","l":"AbstractGraph"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"easygraph","l":"Graph"},{"p":"easygraph","l":"Graphs"},{"p":"easygraph","l":"PathResult"},{"p":"easygraph","l":"UndirectedGraph"}];updateSearchResults();

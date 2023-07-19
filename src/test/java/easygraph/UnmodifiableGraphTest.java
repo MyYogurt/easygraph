@@ -13,7 +13,7 @@ public class UnmodifiableGraphTest {
 
 	@BeforeAll
 	public void setUp() {
-		graph = Graphs.immutableView(GraphTestHelper.generateTestGraph());
+		graph = Graphs.unmodifiableGraph(GraphTestHelper.generateTestGraph());
 	}
 
 	@Test

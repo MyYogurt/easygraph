@@ -8,13 +8,13 @@ public class Graphs {
 	}
 
 	/**
-	 * Returns an immutable view of the graph.
+	 * Returns an unmodifiable view of the graph.
 	 * If changes are made to the underlying graph, those changes will be reflected in the view.
 	 * @param graph the graph.
-	 * @return an immutable view of the graph.
+	 * @return an unmodifiable view of the graph.
 	 * @param <T> the type of the data of the vertices.
 	 */
-	public static <T> Graph<T> immutableView(Graph<T> graph) {
+	public static <T> Graph<T> unmodifiableGraph(Graph<T> graph) {
 		return new UnmodifiableGraph<>(graph);
 	}
 }

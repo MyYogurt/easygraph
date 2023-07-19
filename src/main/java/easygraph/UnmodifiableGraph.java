@@ -1,18 +1,24 @@
-package org.moisiadis;
+package easygraph;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-class ImmutableGraph<T> extends AbstractGraph<T> {
+class UnmodifiableGraph<T> implements Graph<T> {
 	private final Graph<T> graph;
 
-	ImmutableGraph(Graph<T> graph) {
+	UnmodifiableGraph(Graph<T> graph) {
 		this.graph = graph;
 	}
 
 	@Override
 	public void addVertex(T data) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void addVertices(Collection<? extends T> vertices) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -77,7 +83,7 @@ class ImmutableGraph<T> extends AbstractGraph<T> {
 	}
 
 	@Override
-	public PathResult<T> shortestPath(T data1, T data2) {
-		return graph.shortestPath(data1, data2);
+	public PathResult<T> shortestPath(T start, T destination) {
+		return graph.shortestPath(start, destination);
 	}
 }

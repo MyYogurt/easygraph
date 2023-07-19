@@ -1,4 +1,4 @@
-package org.moisiadis;
+package easygraph;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -16,12 +16,14 @@ public interface Graph<T> extends Serializable {
 	/**
 	 * Adds a vertex to the graph.
 	 * @param data the data of the vertex to be added.
+	 * @throws UnsupportedOperationException if the graph is unmodifiable.
 	 */
 	void addVertex(T data);
 
 	/**
 	 * Adds a collection of vertices to the graph.
 	 * @param vertices the collection of vertices to be added.
+	 * @throws UnsupportedOperationException if the graph is unmodifiable.
 	 */
 	void addVertices(Collection<? extends T> vertices);
 
@@ -29,12 +31,14 @@ public interface Graph<T> extends Serializable {
 	 * Adds an edge between two vertices.
 	 * @param data1 the data of the first vertex.
 	 * @param data2 the data of the second vertex.
+	 * @throws UnsupportedOperationException if the graph is unmodifiable.
 	 */
 	void addEdge(T data1, T data2);
 
 	/**
 	 * Removes a vertex from the graph.
 	 * @param data the data of the vertex to be removed.
+	 * @throws UnsupportedOperationException if the graph is unmodifiable.
 	 */
 	void removeVertex(T data);
 
@@ -42,6 +46,7 @@ public interface Graph<T> extends Serializable {
 	 * Removes an edge between two vertices.
 	 * @param data1	the data of the first vertex.
 	 * @param data2 the data of the second vertex.
+	 * @throws UnsupportedOperationException if the graph is unmodifiable.
 	 */
 	void removeEdge(T data1, T data2);
 
@@ -107,9 +112,9 @@ public interface Graph<T> extends Serializable {
 
 	/**
 	 * Returns the vertices of the graph in topological order.
-	 * @param data1 the data of the vertex to start the traversal from.
-	 * @param data2 the data of the vertex to end the traversal at.
+	 * @param start the data of the vertex to start the traversal from.
+	 * @param destination the data of the vertex to end the traversal at.
 	 * @return the vertices of the graph in topological order.
 	 */
-	PathResult<T> shortestPath(T data1, T data2);
+	PathResult<T> shortestPath(T start, T destination);
 }

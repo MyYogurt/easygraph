@@ -1,4 +1,4 @@
-package org.moisiadis;
+package easygraph;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @TestInstance(Lifecycle.PER_CLASS)
-public class ImmutableGraphTest {
+public class UnmodifiableGraphTest {
 	private Graph<String> graph;
 
 	@BeforeAll

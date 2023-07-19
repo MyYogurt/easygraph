@@ -1,4 +1,4 @@
-package org.moisiadis;
+package easygraph;
 
 /**
  * Utility class for graphs.
@@ -15,6 +15,6 @@ public class Graphs {
 	 * @param <T> the type of the data of the vertices.
 	 */
 	public static <T> Graph<T> immutableView(Graph<T> graph) {
-		return new ImmutableGraph<>(graph);
+		return new UnmodifiableGraph<>(graph);
 	}
 }

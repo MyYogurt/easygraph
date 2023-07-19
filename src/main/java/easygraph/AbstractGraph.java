@@ -1,4 +1,4 @@
-package org.moisiadis;
+package easygraph;
 
 import java.util.Collection;
 import java.util.Deque;
@@ -19,7 +19,7 @@ public abstract class AbstractGraph<T> implements Graph<T> {
 	/**
 	 * A map of vertices and their adjacent vertices.
 	 */
-	protected final Map<T, List<Edge<T>>> adjVertices = new HashMap<>();
+	protected final Map<T, List<T>> adjVertices = new HashMap<>();
 
 	@Override
 	public void addVertex(T data) {
@@ -34,20 +34,12 @@ public abstract class AbstractGraph<T> implements Graph<T> {
 	@Override
 	public void removeVertex(T data) {
 		adjVertices.remove(data);
-		adjVertices.values().forEach(e -> e.remove(new Edge<>(data)));
+		adjVertices.values().forEach(e -> e.remove(data));
 	}
 
 	@Override
 	public Optional<List<T>> getAdjVertices(T data) {
-		List<Edge<T>> vertices = adjVertices.get(data);
-
-		if (vertices == null) {
-			return Optional.empty();
-		}
-
-		List<T> returnVertices = new LinkedList<>();
-		vertices.forEach(e -> returnVertices.add(e.getDestination()));
-		return Optional.of(returnVertices);
+		return Optional.ofNullable(adjVertices.get(data));
 	}
 
 	@Override
@@ -73,7 +65,7 @@ public abstract class AbstractGraph<T> implements Graph<T> {
 	@Override
 	public boolean hasEdge(T data1, T data2) {
 		if (adjVertices.containsKey(data1) && adjVertices.containsKey(data2)) {
-			return adjVertices.get(data1).contains(new Edge<>(data2));
+			return adjVertices.get(data1).contains(data2);
 		}
 		return false;
 	}
